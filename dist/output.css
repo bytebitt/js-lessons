@@ -31,6 +31,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-2xs: 18rem;
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
@@ -40,6 +41,8 @@
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
     --font-weight-semibold: 600;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -196,20 +199,29 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
+  }
   .mt-20 {
     margin-top: calc(var(--spacing) * 20);
   }
   .mt-40 {
     margin-top: calc(var(--spacing) * 40);
   }
+  .block {
+    display: block;
+  }
   .flex {
     display: flex;
   }
+  .h-\[50px\] {
+    height: 50px;
+  }
+  .w-2xs {
+    width: var(--container-2xs);
+  }
   .flex-col {
     flex-direction: column;
-  }
-  .justify-center {
-    justify-content: center;
   }
   .bg-\[\#292929\] {
     background-color: #292929;
@@ -244,18 +256,6 @@
   .bg-amber-950 {
     background-color: var(--color-amber-950);
   }
-  .bg-black {
-    background-color: var(--color-black);
-  }
-  .bg-yellow-600 {
-    background-color: var(--color-yellow-600);
-  }
-  .p-20 {
-    padding: calc(var(--spacing) * 20);
-  }
-  .pl-20 {
-    padding-left: calc(var(--spacing) * 20);
-  }
   .text-center {
     text-align: center;
   }
@@ -288,9 +288,6 @@
   .text-green-500 {
     color: var(--color-green-500);
   }
-  .text-pink-400 {
-    color: var(--color-pink-400);
-  }
   .text-pink-600 {
     color: var(--color-pink-600);
   }
@@ -299,9 +296,6 @@
   }
   .text-pink-800 {
     color: var(--color-pink-800);
-  }
-  .text-pink-900 {
-    color: var(--color-pink-900);
   }
   .text-red-300 {
     color: var(--color-red-300);
@@ -315,8 +309,35 @@
   .text-white {
     color: var(--color-white);
   }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  .hover\:bg-amber-200 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-200);
+      }
+    }
+  }
+  .hover\:bg-amber-500 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-500);
+      }
+    }
+  }
 }
 @property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
   syntax: "*";
   inherits: false;
 }
@@ -324,6 +345,7 @@
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-font-weight: initial;
+      --tw-duration: initial;
     }
   }
 }
