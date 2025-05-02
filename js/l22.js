@@ -1,17 +1,32 @@
-const button = document.querySelector("button");
+const buttonOne = document.querySelector("#button-1");
+const buttonTwo = document.querySelector("#button-2");
+const buttons = document.querySelectorAll("button");
+const buttonsBlock = document.querySelector("div");
+const link = document.querySelector("a");
 
-// button.onclick = function () {
+//buttonOne.onclick = function () {
 //     console.log("click!");
 // }
 
-// button.addEventListener("click", function (e) {
+// buttonOne.addEventListener("click", function (e) {
 //     console.log("click");
 // });
 
-function handleClick (e) {
+function handleClick (e) {     
     console.log(e.type); // even type
     console.log(e.currentTarget); // even object
 }
 
-button.addEventListener("click", handleClick, {once: false});
-// button.addEventListener("mouseenter", handleClick);
+// buttonOne.addEventListener("click", handleClick, {once: false});
+// buttonOne.addEventListener("mouseenter", handleClick);
+
+buttonsBlock.addEventListener("click", function (event) {
+    if (event.target.closest("button")) {
+        handleClick(event);
+    };
+});
+
+link.addEventListener("click", function (event) {
+    console.log("Action!");
+    event.preventDefault();
+});
